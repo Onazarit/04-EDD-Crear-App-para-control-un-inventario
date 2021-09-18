@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>DOM</title>
+
+  <link rel="preconnect" href="https://fonts.gstatic.com">
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:ital,wght@0,100;0,400;0,700;1,200&display=swap"
+    rel="stylesheet">
+
+</head>
+
+<body>
+  <div class="header">
+    <h1>Crear App para control un inventario</h1>
+    <p class="azul">Oscar Alberto Nazarit Campos</p>
+  </div>
+
+  <div class="content">
+    <div>
+      <h2>Registrar</h2>
+      <div class=" content-info">
+        <form>
+          <div class="field">
+            <label>Codigo del producto:</label><br>
+            <input id="id" type="number"><br>
+            <label>Nombre del producto:</label><br>
+            <input id="name" type="text" size=35><br>
+            <label>Cantidad:</label><br>
+            <input id="math" type="number"><br>
+            <label>Costo individual:</label><br>
+            <input id="spanish" type="number"><br>
+            <label>Posición (opcional):</label><br>
+            <input id="spanish" type="number"><br>
+          </div>
+          <div class="field">
+            <br>
+            <input id="btnAdd" type="button" value="Agregar nuevo producto">
+            <input id="btnAdd" type="button" value="Eliminar por código">
+            <input id="btnAdd" type="button" value="Buscar por codigo"> <br>
+            <br> <p>Nota: Para eliminar y buscar utilizar la casilla de codigo al inicio</p><br>
+            <input id="btnAdd" type="button" value="Recuperar los productos">
+            <input id="btnAdd" type="button" value="Recuperar los productos inverso">
+            <input id="btnAdd" type="button" value="Insertar nuevo en posición">
+          </div>
+        </form>
+      </div>
+    </div>
+
+    <div>
+      <h2>Resultados</h2>
+      <div class="content-info">
+        
+      </div>
+
+    </div>
+  </div>
+  <script src="//cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+  <script src="main.js" type="module"></script>
+</body>
+
+</html>
