@@ -22,6 +22,7 @@ class Main{
         this._btnSearch.addEventListener('click', this._searchFromList);
         this._btnShowAll.addEventListener('click', this._ShowAll);
         this._btnShowAllInv.addEventListener('click', this._ShowAllInv);
+        this._btnAddOnPos.addEventListener('click', this._addOnPos);
     }
 
     _addToList = () => {
@@ -37,7 +38,7 @@ class Main{
             return;
         }
         this._storage.push(product);
-        this.sendMessage(`Registro completo, se añadio: ${product.getName()}`);
+        this.sendMessage(`Registro completo, se añadieron: [${product.getQuantity()} unidades de ${product.getName()} a ${product.getQuality()} C/U]`);
     }
 
     _removeFromList = () => {
@@ -51,7 +52,7 @@ class Main{
             }
         });
         if(pos >= 0){
-            this.sendMessage(`Se ha removido el producto ${this._storage[pos].getName()}`);
+            this.sendMessage(`Se ha removido el producto [${this._storage[pos].getName()}] de la lista`);
             this._storage.splice(pos,1);
             return;
         }
@@ -71,7 +72,7 @@ class Main{
         });
 
         if(pos >= 0){
-            this.sendMessage(`El producto con codigo ${this._storage[pos].getId()} encontrado fue:  ${this._storage[pos].getName()}`);
+            this.sendMessage(`El producto con codigo ${this._storage[pos].getId()} encontrado fue:  [${this._storage[pos].getQuantity()} unidades de ${this._storage[pos].getName()} a ${this._storage[pos].getQuality()} c/u]`);
             return;
         }
         this.sendMessage(`No se encontro el producto buscado`);
@@ -98,6 +99,36 @@ class Main{
         text += `Total = ${total}`;
         this.sendMessage(text);
         this._storage.reverse();
+    }
+
+    _addOnPos = () => {
+        let product = Product.readForm();
+        let inpPos = document.querySelector("#position");
+        let position = Number(inpPos.value);
+        inpPos.value = "";
+
+        if(this._storage.length >= 20){ //Capacidad de almacenamiento
+            this.sendMessage("Fallo al registrar, el inventario esta lleno");
+            return;
+        }
+        
+        if(product == false){
+            this.sendMessage("Fallo al registrar, intenta revisar los campos");
+            return;
+        }
+
+        if(position >= this._storage.length){
+            this.sendMessage("Fallo al registrar, no hay lugar donde insertar");
+            return;
+        }
+
+        let aux = this._storage.splice(position-1);
+        this._storage.push(product);
+        aux.forEach((p) =>{
+            this._storage.push(p);
+        });
+        this.sendMessage(`Registro completo, se añadio: ${product.getName()} en la posición ${position}`);
+    
     }
 
     sendMessage(text){
